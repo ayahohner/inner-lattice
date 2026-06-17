@@ -32,5 +32,35 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
         <p>&copy; {new Date().getFullYear()}</p>
       </footer>
     </div>
+
+    <script>
+      import mermaid from 'mermaid';
+
+      const renderMermaidDiagrams = async () => {
+        for (const pre of document.querySelectorAll('pre[data-language="mermaid"]')) {
+          const text = pre.textContent?.trim() ?? '';
+          if (!text) continue;
+
+          const wrapper = document.createElement('div');
+          wrapper.className = 'mermaid';
+          wrapper.textContent = text;
+          pre.replaceWith(wrapper);
+        }
+
+        mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: 'default',
+        });
+
+        await mermaid.run();
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderMermaidDiagrams);
+      } else {
+        renderMermaidDiagrams();
+      }
+    </script>
   </body>
 </html>
