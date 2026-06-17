@@ -37,13 +37,20 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
       import mermaid from 'mermaid';
 
       const renderMermaidDiagrams = async () => {
-        const codeBlocks = document.querySelectorAll(
-          'pre code.language-mermaid, pre code[class*="language-mermaid"], pre code[data-language="mermaid"]',
+        const preBlocks = document.querySelectorAll(
+          'pre[data-language="mermaid"], pre.astro-code[data-language="mermaid"], pre code.language-mermaid, pre code[class*="language-mermaid"], pre code[data-language="mermaid"]',
         );
 
-        codeBlocks.forEach((codeBlock) => {
-          const pre = codeBlock.closest('pre');
-          if (!pre || !(codeBlock instanceof HTMLElement)) {
+        preBlocks.forEach((block) => {
+          if (!(block instanceof HTMLElement)) {
+            return;
+          }
+
+          const pre =
+            block.tagName === 'PRE' ? block : block.closest('pre');
+          const codeBlock = pre?.querySelector('code') ?? block;
+
+          if (!pre || !codeBlock || !(codeBlock instanceof HTMLElement)) {
             return;
           }
 
