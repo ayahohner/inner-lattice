@@ -4,7 +4,6 @@ date: 2026-06-17
 tags: ["organizations", "knowledgebase"]
 ---
 
-# FinOps and Productivity Metrics in the AI Agent Coding Era: The "Unregretted Work" Framework
 
 This framework provides a rigorous analysis of the thesis: **maximizing effective long-term unregretted work per token-second**. It decomposes the variables, maps the evolutionary paradigms, integrates [[Living Systems Theory]] (LST), and provides systems-thinking jigs (DSRP) and pseudo-algorithms to optimize this engine.
 

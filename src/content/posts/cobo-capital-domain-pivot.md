@@ -4,7 +4,6 @@ date: 2026-06-17
 tags: ["organizations", "knowledgebase"]
 ---
 
-# COBO: Capital Domain Pivot
 
 > **Thesis**: The organization operates by managing and transforming five distinct forms of Capital. This view reveals the ecosystem of value exchange.
 

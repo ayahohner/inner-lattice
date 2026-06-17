@@ -4,7 +4,6 @@ date: 2026-06-17
 tags: ["organizations", "knowledgebase"]
 ---
 
-# Organizational Planes: The Structure of the Autonomous Organization
 
 > **Thesis**: The autonomous organization is a living system composed of four interacting planes.
 > 1. **Infrastructure**: The physical/virtual space and channels (Where things happen).
