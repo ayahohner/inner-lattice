@@ -37,9 +37,7 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
       import mermaid from 'mermaid';
 
       const renderMermaidDiagrams = async () => {
-        const preBlocks = document.querySelectorAll(
-          'pre[data-language="mermaid"], pre.astro-code[data-language="mermaid"], pre code.language-mermaid, pre code[class*="language-mermaid"], pre code[data-language="mermaid"]',
-        );
+        const preBlocks = document.querySelectorAll('pre[data-language="mermaid"]');
 
         preBlocks.forEach((block) => {
           if (!(block instanceof HTMLElement)) {
