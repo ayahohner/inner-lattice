@@ -323,4 +323,12 @@ time {
   .post-header h1 {
     font-size: 1.5rem;
   }
+
+  .post-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
 }
