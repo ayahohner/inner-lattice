@@ -10,6 +10,7 @@
   "dependencies": {
     "astro": "^5.1.0",
     "katex": "^0.17.0",
+    "mermaid": "^11.15.0",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0"
   }
