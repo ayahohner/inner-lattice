@@ -234,7 +234,7 @@ To actively optimize $LUWV$, we implement a dual-loop process.
 ### 4.1 The Primary Process: The Telemetry & Match Loop
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[Telemetry Capture] --> B[Calculate LUWV]
     B --> C{Analyze Regret R}
     C -->|R is High| D[Assess Wardley Stage]
