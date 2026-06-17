@@ -27,18 +27,17 @@ function formatDate(date: Date): string {
       <ul class="post-list">
         {sortedPosts.map((post) => (
           <li class="post-item">
-            <a href={`/${post.slug}`} class="post-link">
-              <span class="post-title">{post.data.title}</span>
-              <span class="post-meta">
-                <time datetime={post.data.date.toISOString()}>
-                  {formatDate(post.data.date)}
-                </time>
+            <a href={`/${post.slug}`} class="post-link" aria-label={post.data.title}></a>
+            <span class="post-title">{post.data.title}</span>
+            <span class="post-meta">
+              <time datetime={post.data.date.toISOString()}>
+                {formatDate(post.data.date)}
+              </time>
+              <span class="tags">
+                {post.data.tags.map((tag) => (
+                  <a class="tag" href={`/tags/${getTagSlug(tag)}`}>{tag}</a>
+                ))}
               </span>
-            </a>
-            <span class="tags post-item-tags">
-              {post.data.tags.map((tag) => (
-                <a class="tag" href={`/tags/${getTagSlug(tag)}`}>{tag}</a>
-              ))}
             </span>
           </li>
         ))}
