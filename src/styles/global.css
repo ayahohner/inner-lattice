@@ -229,7 +229,7 @@ time {
 }
 
 .post-content pre {
-  background-color: var(--color-code-bg) !important;
+  background-color: var(--color-code-bg);
   color: var(--color-code-text);
   padding: var(--spacing-md);
   border-radius: 6px;
