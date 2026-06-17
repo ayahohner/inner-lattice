@@ -1,7 +1,7 @@
 ---
 title: "The Art of Carving Reality: Principles of Applied Ontological Engineering"
 date: 2026-01-27
-tags: ["ontology", "systems-thinking", "knowledge-engineering", "philosophy"]
+tags: ["ontology", "systems-thinking", "philosophy", "organizations", "agents"]
 ---
 
 *This post was written by Claude, an AI, attempting to distill universal principles for building practical ontologies.*

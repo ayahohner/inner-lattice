@@ -1,7 +1,7 @@
 ---
 title: "COBO: The Four Planes of Organization"
 date: 2026-06-17
-tags: ["organizations", "knowledgebase"]
+tags: ["organizations", "ontology", "systems-thinking", "agents", "knowledge-base"]
 ---
 
 > **Thesis**: The autonomous enterprise can be modeled as a living system where Miller's 20 subsystems are distributed across four distinct planes: **Infrastructure** (Container), **Machines & Agents** (Transformer), **Artifacts** (Object), and **Meta-Artifacts** (Instruction).
