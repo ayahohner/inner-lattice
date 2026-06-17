@@ -38,7 +38,7 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 
       const renderMermaidDiagrams = async () => {
         const codeBlocks = document.querySelectorAll(
-          'pre code.language-mermaid, pre code[class*="language-mermaid"]',
+          'pre code.language-mermaid, pre code[class*="language-mermaid"], pre code[data-language="mermaid"]',
         );
 
         codeBlocks.forEach((codeBlock) => {
