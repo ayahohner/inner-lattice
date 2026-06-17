@@ -7,8 +7,8 @@
   --color-accent: #5a6b7c;
   --color-link: #4a5a6a;
   --color-link-hover: #3a4a5a;
-  --color-tag-bg: #e8ecef;
-  --color-tag-text: #5a6b7c;
+  --color-tag-bg: #eceeee;
+  --color-tag-text: #6d7478;
   --color-border: #e0e4e8;
   --color-surface: #f1f4f6;
   --color-surface-raised: #edf2f4;
@@ -156,11 +156,11 @@ time {
   position: relative;
   z-index: 2;
   display: inline-block;
-  font-size: 0.75rem;
-  padding: 0.15em 0.5em;
+  font-size: 0.7rem;
+  padding: 0.02em 0.45em 0.08em;
   background-color: var(--color-tag-bg);
   color: var(--color-tag-text);
-  border-radius: 4px;
+  border-radius: 5px 3px 5px 3px;
   text-decoration: none;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
