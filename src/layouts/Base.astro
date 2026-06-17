@@ -50,7 +50,31 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
         mermaid.initialize({
           startOnLoad: false,
           securityLevel: 'loose',
-          theme: 'default',
+          theme: 'base',
+          themeVariables: {
+            background: '#edf2f4',
+            mainBkg: '#fafafa',
+            secondBkg: '#f1f4f6',
+            primaryColor: '#fafafa',
+            primaryTextColor: '#2d2d2d',
+            primaryBorderColor: '#aeb8c0',
+            secondaryColor: '#edf2f4',
+            secondaryTextColor: '#2d2d2d',
+            secondaryBorderColor: '#c8d1d8',
+            tertiaryColor: '#e8ecef',
+            tertiaryTextColor: '#2d2d2d',
+            tertiaryBorderColor: '#c8d1d8',
+            lineColor: '#5a6b7c',
+            textColor: '#2d2d2d',
+            noteBkgColor: '#f7f8f4',
+            noteTextColor: '#2d2d2d',
+            noteBorderColor: '#d8d4bd',
+            actorBkg: '#fafafa',
+            actorTextColor: '#2d2d2d',
+            actorBorder: '#aeb8c0',
+            signalColor: '#4a5a6a',
+            signalTextColor: '#2d2d2d',
+          },
         });
 
         await mermaid.run();
