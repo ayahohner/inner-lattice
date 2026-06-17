@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
+import remarkListBlockMath from './src/plugins/remarkListBlockMath.mjs';
 
 export default defineConfig({
   site: 'https://inner-lattice.com',
@@ -24,7 +25,7 @@ export default defineConfig({
         ],
       },
     },
-    remarkPlugins: [[remarkMath, { singleDollarTextMath: true }]],
+    remarkPlugins: [[remarkMath, { singleDollarTextMath: true }], remarkListBlockMath],
     rehypePlugins: [rehypeKatex],
   },
 });
