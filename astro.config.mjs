@@ -9,18 +9,18 @@ export default defineConfig({
     shikiConfig: {
       theme: {
         name: 'inner-lattice',
-        type: 'dark',
+        type: 'light',
         colors: {
-          'editor.background': '#26323a',
-          'editor.foreground': '#edf4f5',
+          'editor.background': '#eeeeee',
+          'editor.foreground': '#2d2d2d',
         },
         tokenColors: [
-          { scope: ['comment', 'punctuation.definition.comment'], settings: { foreground: '#9fb0b8' } },
-          { scope: ['string', 'constant.other.symbol'], settings: { foreground: '#c7d6b7' } },
-          { scope: ['constant.numeric', 'constant.language'], settings: { foreground: '#e7c889' } },
-          { scope: ['keyword', 'storage', 'entity.name.tag'], settings: { foreground: '#9fc4cf' } },
-          { scope: ['entity.name.function', 'support.function'], settings: { foreground: '#bfd4eb' } },
-          { scope: ['variable', 'entity.name'], settings: { foreground: '#edf4f5' } },
+          { scope: ['comment', 'punctuation.definition.comment'], settings: { foreground: '#8b8585' } },
+          { scope: ['string', 'constant.other.symbol'], settings: { foreground: '#5f6d52' } },
+          { scope: ['constant.numeric', 'constant.language'], settings: { foreground: '#7a6142' } },
+          { scope: ['keyword', 'storage', 'entity.name.tag'], settings: { foreground: '#4f6570' } },
+          { scope: ['entity.name.function', 'support.function'], settings: { foreground: '#4f5f7a' } },
+          { scope: ['variable', 'entity.name'], settings: { foreground: '#2d2d2d' } },
         ],
       },
     },
