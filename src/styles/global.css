@@ -1,3 +1,5 @@
+@import "katex/dist/katex.min.css";
+
 :root {
   --color-bg: #fafafa;
   --color-text: #2d2d2d;
@@ -234,6 +236,29 @@ time {
   background: none;
   padding: 0;
   color: inherit;
+}
+
+.post-content .katex {
+  color: var(--color-text);
+}
+
+.post-content .katex-display {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background-color: #f5f7f9;
+  border: 1px solid var(--color-border);
+}
+
+.post-content .katex-display::-webkit-scrollbar {
+  height: 0.4rem;
+}
+
+.post-content .katex-display::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 999px;
 }
 
 .post-content hr {
