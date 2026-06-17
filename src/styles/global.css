@@ -97,12 +97,12 @@ footer {
 }
 
 .post-item {
+  position: relative;
   margin-bottom: var(--spacing-lg);
   margin-left: calc(-1 * var(--spacing-md));
   margin-right: calc(-1 * var(--spacing-md));
   padding: var(--spacing-md);
   border-radius: 8px;
-  cursor: pointer;
   transition: background-color 0.15s ease;
 }
 
@@ -111,12 +111,21 @@ footer {
 }
 
 .post-title {
+  position: relative;
   display: block;
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--color-text);
   text-decoration: none;
   text-transform: lowercase;
+}
+
+.post-title::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--spacing-md));
+  z-index: 1;
+  border-radius: 8px;
 }
 
 .post-title:focus-visible {
@@ -144,6 +153,8 @@ time {
 }
 
 .tag {
+  position: relative;
+  z-index: 2;
   display: inline-block;
   font-size: 0.75rem;
   padding: 0.15em 0.5em;
