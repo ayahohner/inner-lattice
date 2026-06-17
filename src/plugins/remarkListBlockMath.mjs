@@ -2,86 +2,83 @@ function isLikelyDisplayMath(value) {
   return /[\\^_=+*/-]|\[|\]|\{|\}|\\\\/.test(value);
 }
 
-function looksLikeStandaloneLine(children, idx) {
-  const prev = children[idx - 1];
-  const next = children[idx + 1];
-
-  const prevText = prev && prev.type === 'text' ? prev.value : '';
-  const nextText = next && next.type === 'text' ? next.value : '';
-
-  const prevHasOnlyIndent = /(\r?\n\s*)$/.test(prevText);
-  const nextHasOnlyIndent = nextText === undefined || /^\s*$/.test(nextText);
-
-  return !!prev && prevHasOnlyIndent && nextHasOnlyIndent;
+function isWhitespaceLine(value) {
+  return /^\s*$/.test(value);
 }
 
-function promoteInlineMathLineInList(paragraphNode, listItems, paragraphIndex) {
-  if (!paragraphNode || !Array.isArray(paragraphNode.children)) {
-    return;
-  }
+function isLineAlone(children, index) {
+  const previous = children[index - 1];
+  const next = children[index + 1];
+  const prevText = previous && previous.type === 'text' ? previous.value : '';
+  const nextText = next && next.type === 'text' ? next.value : '';
+  const prevTail = prevText.includes('\n') ? prevText.split(/\r?\n/).pop() : prevText;
+  const nextHead = nextText.includes('\n') ? nextText.split(/\r?\n/)[0] : nextText;
+  return isWhitespaceLine(prevTail) && (nextText === undefined || isWhitespaceLine(nextHead));
+}
 
-  for (let childIndex = paragraphNode.children.length - 1; childIndex >= 0; childIndex -= 1) {
-    const child = paragraphNode.children[childIndex];
-    if (child.type !== 'inlineMath') {
-      continue;
-    }
-    if (!isLikelyDisplayMath(child.value || '')) {
-      continue;
-    }
-    if (!looksLikeStandaloneLine(paragraphNode.children, childIndex)) {
-      continue;
-    }
-    const inlineStart = child.value || '';
+function makeDisplayMath(value, position) {
+  return {
+    type: 'math',
+    value,
+    data: {
+      hName: 'pre',
+      hChildren: [
+        {
+          type: 'element',
+          tagName: 'code',
+          properties: {
+            className: ['language-math', 'math-display'],
+          },
+          children: [{ type: 'text', value }],
+        },
+      ],
+    },
+    position,
+  };
+}
 
-    const prev = paragraphNode.children[childIndex - 1];
+function promoteListMath(paragraphNode, listChildren, paragraphIndex) {
+  for (let i = paragraphNode.children.length - 1; i >= 0; i -= 1) {
+    const child = paragraphNode.children[i];
+    if (child.type !== 'inlineMath') continue;
+
+    const value = child.value || '';
+    if (!isLikelyDisplayMath(value)) continue;
+    if (!isLineAlone(paragraphNode.children, i)) continue;
+
+    const prev = paragraphNode.children[i - 1];
     if (prev && prev.type === 'text') {
       prev.value = prev.value.replace(/(\r?\n\s*)$/, '');
-      if (!prev.value) {
-        paragraphNode.children.splice(childIndex - 1, 1);
-        childIndex -= 1;
-      }
+      if (!prev.value) paragraphNode.children.splice(i - 1, 1);
     }
 
-    paragraphNode.children.splice(childIndex, 1);
+    paragraphNode.children.splice(i, 1);
+    listChildren.splice(paragraphIndex + 1, 0, makeDisplayMath(value, child.position));
+  }
+}
 
-    const mathNode = {
-      type: 'math',
-      value: inlineStart,
-      data: child.data,
-      position: child.position,
-    };
-    listItems.splice(paragraphIndex + 1, 0, mathNode);
+function visit(node) {
+  if (!node || !Array.isArray(node.children)) return;
+
+  if (node.type === 'listItem') {
+    for (let i = node.children.length - 1; i >= 0; i -= 1) {
+      const child = node.children[i];
+      if (child.type === 'paragraph') {
+        promoteListMath(child, node.children, i);
+      }
+    }
+  }
+
+  for (const child of node.children) {
+    visit(child);
   }
 }
 
 export default function remarkListBlockMath() {
-  return function transformer(tree) {
-    if (!tree || !Array.isArray(tree.children)) {
-      return;
-    }
-
-    const visitListItem = (node) => {
-      if (!node || !Array.isArray(node.children)) {
-        return;
-      }
-
-      if (node.type === 'listItem') {
-        for (let childIndex = node.children.length - 1; childIndex >= 0; childIndex -= 1) {
-          const child = node.children[childIndex];
-          if (child.type !== 'paragraph') {
-            continue;
-          }
-          promoteInlineMathLineInList(child, node.children, childIndex);
-        }
-      }
-
-      for (const child of node.children) {
-        visitListItem(child);
-      }
-    };
-
+  return (tree) => {
+    if (!tree || !Array.isArray(tree.children)) return;
     for (const child of tree.children) {
-      visitListItem(child);
+      visit(child);
     }
   };
 }
