@@ -80,10 +80,26 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
         await mermaid.run();
       };
 
+      const enablePostRowLinks = () => {
+        document.addEventListener('click', (event) => {
+          if (!(event instanceof MouseEvent)) return;
+          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          if (event.target instanceof Element && event.target.closest('a')) return;
+
+          const row = event.target instanceof Element ? event.target.closest('[data-post-href]') : null;
+          const href = row?.getAttribute('data-post-href');
+          if (href) window.location.href = href;
+        });
+      };
+
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', renderMermaidDiagrams);
+        document.addEventListener('DOMContentLoaded', () => {
+          renderMermaidDiagrams();
+          enablePostRowLinks();
+        });
       } else {
         renderMermaidDiagrams();
+        enablePostRowLinks();
       }
     </script>
   </body>
