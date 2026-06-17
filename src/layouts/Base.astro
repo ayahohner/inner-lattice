@@ -19,7 +19,7 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{fullTitle}</title>
-  </head>
+</head>
   <body>
     <div class="container">
       <header>
@@ -32,5 +32,46 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
         <p>&copy; {new Date().getFullYear()}</p>
       </footer>
     </div>
+
+    <script>
+      import mermaid from 'mermaid';
+
+      const renderMermaidDiagrams = async () => {
+        const codeBlocks = document.querySelectorAll(
+          'pre code.language-mermaid, pre code[class*="language-mermaid"]',
+        );
+
+        codeBlocks.forEach((codeBlock) => {
+          const pre = codeBlock.closest('pre');
+          if (!pre || !(codeBlock instanceof HTMLElement)) {
+            return;
+          }
+          const text = codeBlock.textContent?.trim() ?? '';
+          if (!text) return;
+
+          const wrapper = document.createElement('div');
+          wrapper.className = 'mermaid';
+          wrapper.textContent = text;
+          pre.replaceWith(wrapper);
+        });
+
+        mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: 'default',
+        });
+
+        const mermaidNodes = Array.from(document.querySelectorAll('.mermaid'));
+        if (mermaidNodes.length > 0) {
+          await mermaid.run({ nodes: mermaidNodes });
+        }
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderMermaidDiagrams);
+      } else {
+        renderMermaidDiagrams();
+      }
+    </script>
   </body>
 </html>

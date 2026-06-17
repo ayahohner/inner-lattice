@@ -261,6 +261,32 @@ time {
   border-radius: 999px;
 }
 
+.post-content .mermaid {
+  margin: 1.75rem auto;
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: #f5f7f9;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.post-content .mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-content .mermaid::-webkit-scrollbar {
+  height: 0.4rem;
+}
+
+.post-content .mermaid::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 999px;
+}
+
 .post-content hr {
   border: none;
   border-top: 1px solid var(--color-border);
