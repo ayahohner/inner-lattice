@@ -117,9 +117,10 @@ footer {
 }
 
 .post-title {
-  font-size: 1.125rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: var(--color-text);
+  text-transform: lowercase;
 }
 
 .post-meta {
