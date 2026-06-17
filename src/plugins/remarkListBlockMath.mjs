@@ -9,7 +9,8 @@ function looksLikeStandaloneLine(children, idx) {
   const prevText = prev && prev.type === 'text' ? prev.value : '';
   const nextText = next && next.type === 'text' ? next.value : '';
 
-  const prevHasOnlyIndent = /(\r?\n\s*)$/.test(prevText);
+  const prevLine = prevText.includes('\n') ? prevText.split(/\r?\n/).pop() : '';
+  const prevHasOnlyIndent = /^\s*$/.test(prevLine);
   const nextHasOnlyIndent = nextText === undefined || /^\s*$/.test(nextText);
 
   return !!prev && prevHasOnlyIndent && nextHasOnlyIndent;
@@ -47,7 +48,24 @@ function promoteInlineMathLineInList(paragraphNode, listItems, paragraphIndex) {
     const mathNode = {
       type: 'math',
       value: inlineStart,
-      data: child.data,
+      data: {
+        hName: 'pre',
+        hChildren: [
+          {
+            type: 'element',
+            tagName: 'code',
+            properties: {
+              className: ['language-math', 'math-display'],
+            },
+            children: [
+              {
+                type: 'text',
+                value: inlineStart,
+              },
+            ],
+          },
+        ],
+      },
       position: child.position,
     };
     listItems.splice(paragraphIndex + 1, 0, mathNode);
