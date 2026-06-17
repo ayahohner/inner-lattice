@@ -4,8 +4,6 @@ date: 2026-06-17
 tags: ["organizations", "knowledgebase"]
 ---
 
-# COBO: Living Systems Edition
-
 > **Thesis**: The organization is a living system. Its capabilities are not "Departments" (like Marketing or Engineering) but **Biological Subsystems** (like Ingestor, Decider, Producer) operating across four planes.
 
 ---
