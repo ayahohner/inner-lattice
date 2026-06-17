@@ -100,6 +100,10 @@ footer {
   margin-bottom: var(--spacing-lg);
 }
 
+.post-item-tags {
+  margin-top: var(--spacing-xs);
+}
+
 .post-link {
   display: flex;
   flex-direction: column;
@@ -142,11 +146,49 @@ time {
 }
 
 .tag {
+  display: inline-block;
   font-size: 0.75rem;
   padding: 0.15em 0.5em;
   background-color: var(--color-tag-bg);
   color: var(--color-tag-text);
   border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.tag:hover {
+  background-color: var(--color-border);
+  color: var(--color-link-hover);
+}
+
+.tag-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.tag-header h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.tag-label {
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  text-transform: lowercase;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: var(--spacing-md);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.back-link:hover {
+  color: var(--color-link-hover);
 }
 
 .empty {
