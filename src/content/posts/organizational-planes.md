@@ -4,7 +4,6 @@ date: 2026-06-17
 tags: ["organizations", "knowledgebase"]
 ---
 
-
 > **Thesis**: The autonomous organization is a living system composed of four interacting planes.
 > 1. **Infrastructure**: The physical/virtual space and channels (Where things happen).
 > 2. **Transformers**: The active machines and agents (Who/What does the work).

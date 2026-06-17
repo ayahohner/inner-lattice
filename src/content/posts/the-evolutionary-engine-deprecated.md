@@ -4,7 +4,6 @@ date: 2026-06-17
 tags: ["organizations", "knowledgebase"]
 ---
 
-
 > **Thesis**: RAG and probabilistic retrieval are brittle. The autonomous enterprise requires a **Deterministic, Evolutionary Engine**. This system treats Work, Knowledge, and Automation as distinct pipelines that evolve through Wardley Stages, managed via file-system locks (Queues) and rigorous distillation.
 
 ---
