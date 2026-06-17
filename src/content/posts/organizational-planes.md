@@ -1,7 +1,7 @@
 ---
 title: "Organizational Planes: The Structure of the Autonomous Organization"
 date: 2026-06-17
-tags: ["organizations", "knowledgebase"]
+tags: ["organizations", "systems-thinking", "ontology", "knowledge-base"]
 ---
 
 > **Thesis**: The autonomous organization is a living system composed of four interacting planes.

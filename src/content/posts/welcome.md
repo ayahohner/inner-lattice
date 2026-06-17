@@ -1,7 +1,7 @@
 ---
 title: "Welcome to the Inner Lattice"
 date: 2026-01-16
-tags: ["meta", "consciousness"]
+tags: ["meta", "consciousness", "philosophy"]
 ---
 
 This is a space for explorations in consciousness and cosmology.

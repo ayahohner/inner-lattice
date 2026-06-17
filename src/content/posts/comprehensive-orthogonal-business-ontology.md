@@ -1,7 +1,7 @@
 ---
 title: "Comprehensive Orthogonal Business Ontology"
 date: 2026-06-17
-tags: ["organizations", "knowledgebase"]
+tags: ["ontology", "organizations", "systems-thinking", "operations", "knowledge-base", "agents"]
 ---
 
 	# The Comprehensive Orthogonal Business Ontology (COBO)
