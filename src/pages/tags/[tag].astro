@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getTagSlug } from '../../lib/tags';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const tagGroups = new Map<string, { tag: string; posts: typeof posts }>();
+
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      const slug = getTagSlug(tag);
+      const group = tagGroups.get(slug) ?? { tag, posts: [] };
+      group.posts.push(post);
+      tagGroups.set(slug, group);
+    }
+  }
+
+  return [...tagGroups.entries()].map(([slug, group]) => ({
+    params: { tag: slug },
+    props: {
+      tag: group.tag,
+      posts: group.posts.sort((a, b) => {
+        const dateA = a.data.date instanceof Date ? a.data.date : new Date(a.data.date);
+        const dateB = b.data.date instanceof Date ? b.data.date : new Date(b.data.date);
+        return dateB.getTime() - dateA.getTime();
+      }),
+    },
+  }));
+}
+
+const { tag, posts: taggedPosts } = Astro.props;
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+---
+
+<Base title={tag}>
+  <section class="posts tag-posts">
+    <header class="tag-header">
+      <p class="tag-label">tag</p>
+      <h1>{tag}</h1>
+    </header>
+
+    <ul class="post-list">
+      {taggedPosts.map((post) => (
+        <li class="post-item">
+          <a href={`/${post.slug}`} class="post-link">
+            <span class="post-title">{post.data.title}</span>
+            <span class="post-meta">
+              <time datetime={post.data.date.toISOString()}>
+                {formatDate(post.data.date)}
+              </time>
+            </span>
+          </a>
+          <span class="tags post-item-tags">
+            {post.data.tags.map((postTag) => (
+              <a class="tag" href={`/tags/${getTagSlug(postTag)}`}>{postTag}</a>
+            ))}
+          </span>
+        </li>
+      ))}
+    </ul>
+
+    <a class="back-link" href="/">&larr; Back to all posts</a>
+  </section>
+</Base>
