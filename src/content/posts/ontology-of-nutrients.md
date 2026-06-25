@@ -1,6 +1,6 @@
 ---
 title: "Ontology of Nutrients"
-date: 2026-06-25
+date: 2026-06-25T12:00:00-04:00
 tags: ["ontology", "nutrition", "health", "knowledge-base"]
 ---
 
