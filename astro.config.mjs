@@ -4,7 +4,7 @@ import remarkMath from 'remark-math';
 import remarkListBlockMath from './src/plugins/remarkListBlockMath.mjs';
 
 export default defineConfig({
-  site: 'https://inner-lattice.com',
+  site: 'https://innerlattice.com',
   output: 'static',
   markdown: {
     shikiConfig: {
