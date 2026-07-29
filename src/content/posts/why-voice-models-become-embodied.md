@@ -63,7 +63,7 @@ These thresholds are not a single ladder every system must climb in order. They 
 | 14 | Crying speech | Respiratory interruption; sobbing | Irregular inhalatory spasms, glottal constriction, and disrupted phrase planning |
 | 15 | Breath timing in dialogue | Pre-turn inspiration; conversational breathing | Prediction of a turn opportunity, response preparation, and willingness to claim the floor |
 
-Speech breathing changes with utterance length and loudness. Conversational inhalation is tied to response planning and turn management. Laughter has its own respiratory organization; it is not an indefinitely repeatable string of *ha* tokens. [Selected research on speech breathing](https://pmc.ncbi.nlm.nih.gov/articles/PMC2636560/)
+Speech breathing changes with utterance length and loudness. Conversational inhalation is tied to response planning and turn management. Laughter has its own respiratory organization; it is not an indefinitely repeatable string of *ha* tokens. [\[1\]](#source-1)
 
 ## II. The larynx: the voice source
 
@@ -91,7 +91,7 @@ Speech breathing changes with utterance length and loudness. Conversational inha
 | 35 | Voicing distinctions | Laryngeal timing; VOT; aspiration | Precise coordination of oral release, glottal opening, and onset of oscillation |
 | 36 | Tonal-language pitch | Lexical tone production | Deliberate, syllable-aligned laryngeal tension trajectories rather than generic sentence melody |
 
-Fold stiffness, thickness, glottal opening, and subglottal pressure all affect the resulting acoustics. They also interact nonlinearly. A generator with independent controls for pitch, breathiness, and loudness will eventually produce impossible combinations unless those controls share an underlying biomechanics. [Selected research on vocal-fold modelling](https://pmc.ncbi.nlm.nih.gov/articles/PMC4818279/)
+Fold stiffness, thickness, glottal opening, and subglottal pressure all affect the resulting acoustics. They also interact nonlinearly. A generator with independent controls for pitch, breathiness, and loudness will eventually produce impossible combinations unless those controls share an underlying biomechanics. [\[2\]](#source-2)
 
 ## III. Source-filter coupling: where modular controls break
 
@@ -104,7 +104,7 @@ Fold stiffness, thickness, glottal opening, and subglottal pressure all affect t
 | 41 | Singing resonance strategies | Formant tuning | Deliberate tract reshaping around source harmonics |
 | 42 | Roughness caused by tract configuration | Source destabilization | Pressure feedback from supraglottal and subglottal cavities |
 
-The classical linear source-filter decomposition remains useful, but living anatomy is less tidy. Aerodynamic and acoustic coupling allow tongue position, laryngeal height, epilaryngeal geometry, and tract resonances to change the source itself. [Selected research on nonlinear source-filter interaction](https://pmc.ncbi.nlm.nih.gov/articles/PMC10589054/)
+The classical linear source-filter decomposition remains useful, but living anatomy is less tidy. Aerodynamic and acoustic coupling allow tongue position, laryngeal height, epilaryngeal geometry, and tract resonances to change the source itself. [\[3\]](#source-3)
 
 ## IV. Supralaryngeal articulation: the moving acoustic cavity
 
@@ -133,7 +133,7 @@ The classical linear source-filter decomposition remains useful, but living anat
 | 63 | Clear speech | Hyperarticulation; expanded vowel space | Increased movement amplitude and duration, guided by listener-oriented motor goals |
 | 64 | Mumbling | Hypoarticulation | Reduced jaw excursion, compressed vowel space, and lower articulatory effort |
 
-Measured vocal-tract geometry can be converted into area functions that predict resonance. Even small changes in tract length affect perceived body size and speaker category; smiling changes acoustics partly because spreading the lips shortens the tract. [Selected research on vocal-tract geometry](https://pmc.ncbi.nlm.nih.gov/articles/PMC5966313/)
+Measured vocal-tract geometry can be converted into area functions that predict resonance. Even small changes in tract length affect perceived body size and speaker category; smiling changes acoustics partly because spreading the lips shortens the tract. [\[4\]](#source-4)
 
 ## V. Coordination and coarticulation: speech is not a row of sounds
 
@@ -152,7 +152,7 @@ Measured vocal-tract geometry can be converted into area functions that predict 
 | 75 | Speaker-specific rhythm | Idiolectal motor timing | Persistent learned coordination patterns rather than a global tempo control |
 | 76 | Realistic speech errors | Phonological versus motor errors | Multiple planning levels whose failures produce different kinds of output |
 
-Articulatory synthesis improves when consonants are generated as context-dependent vocal-tract configurations. Human speakers also preserve acoustic goals by compensating with unperturbed articulators when, for example, the jaw is unexpectedly blocked. [Selected research on articulatory compensation](https://pubmed.ncbi.nlm.nih.gov/23613734/)
+Articulatory synthesis improves when consonants are generated as context-dependent vocal-tract configurations. Human speakers also preserve acoustic goals by compensating with unperturbed articulators when, for example, the jaw is unexpectedly blocked. [\[5\]](#source-5)
 
 ## VI. Sensorimotor and neurological control
 
@@ -175,7 +175,7 @@ Articulatory synthesis improves when consonants are generated as context-depende
 | 91 | Motor adaptation over a conversation | Sensorimotor learning | Persistent updates to predicted body-sound mappings |
 | 92 | Reflexive versus voluntary vocalizations | Dual laryngeal control systems | Distinct control pathways for speech, laughter, crying, and airway protection |
 
-Speech production is a distributed control problem. Neural models such as DIVA distinguish feedforward commands, auditory targets, and somatosensory targets. Perturbation studies show speakers compensating through bodily feedback, while altered auditory feedback changes voice production. [Selected research on speech motor control](https://pmc.ncbi.nlm.nih.gov/articles/PMC3650855/)
+Speech production is a distributed control problem. Neural models such as DIVA distinguish feedforward commands, auditory targets, and somatosensory targets. Perturbation studies show speakers compensating through bodily feedback, while altered auditory feedback changes voice production. [\[6\]](#source-6)
 
 ## VII. Whole-body geometry and condition
 
@@ -198,7 +198,7 @@ Speech production is a distributed control problem. Neural models such as DIVA d
 | 107 | Medication or intoxication effects | Sensorimotor alteration | Arousal, timing, muscle tone, coordination, and salivation changes |
 | 108 | Stable bodily limits | Speaker-specific range profile | Physiological boundaries on F0, SPL, duration, and voice quality |
 
-Posture changes vocal-tract acoustics; body morphology affects tract length and formants; vocal effort changes with room acoustics and accumulated fatigue. Co-speech gesture can even alter tongue and jaw displacement, which means "voice only" is not always motorically separable from the visible body. [Selected research on whole-body effects in speech](https://pmc.ncbi.nlm.nih.gov/articles/PMC4545056/)
+Posture changes vocal-tract acoustics; body morphology affects tract length and formants; vocal effort changes with room acoustics and accumulated fatigue. Co-speech gesture can even alter tongue and jaw displacement, which means "voice only" is not always motorically separable from the visible body. [\[7\]](#source-7)
 
 ## VIII. Autonomic, affective, and interoceptive state
 
@@ -221,7 +221,7 @@ Posture changes vocal-tract acoustics; body morphology affects tract length and 
 | 123 | Genuine versus posed laughter | Spontaneous or volitional laughter acoustics | Different respiratory, laryngeal, and social-control pathways |
 | 124 | Contagious laughter and vocal entrainment | Social-affective coupling | Perception of another person changing the speaker's autonomic and motor state |
 
-Stress is associated with changes in laryngeal muscle activity and acoustic output, yet no single acoustic cue uniquely identifies an emotion. Faithful synthesis therefore needs a multidimensional physiological state rather than a lookup table that translates `emotion=angry` into "raise pitch and volume." [Selected research on laryngeal response to stress](https://pmc.ncbi.nlm.nih.gov/articles/PMC7890219/)
+Stress is associated with changes in laryngeal muscle activity and acoustic output, yet no single acoustic cue uniquely identifies an emotion. Faithful synthesis therefore needs a multidimensional physiological state rather than a lookup table that translates `emotion=angry` into "raise pitch and volume." [\[8\]](#source-8)
 
 ## IX. Prosody, phonology, and linguistic embodiment
 
@@ -267,7 +267,7 @@ Stress is associated with changes in laryngeal muscle activity and acoustic outp
 | 157 | A different voice for a "formal" task | Style shifting; read versus spontaneous speech | Social role, monitoring level, and learned performance posture |
 | 158 | Continuity through interruptions | Conversational state | Persistent bodily, emotional, and discourse state across turns |
 
-Human turn transitions are extremely fast relative to the time required to plan speech. Listening and embodied response preparation must overlap. Breathing participates in the organization of turns, while face-to-face conversation also recruits gaze and gesture. [Selected research on conversational turn-taking](https://pmc.ncbi.nlm.nih.gov/articles/PMC4464110/)
+Human turn transitions are extremely fast relative to the time required to plan speech. Listening and embodied response preparation must overlap. Breathing participates in the organization of turns, while face-to-face conversation also recruits gaze and gesture. [\[9\]](#source-9)
 
 ## XI. Pathology as a causal test
 
@@ -296,7 +296,7 @@ A model can produce generic healthy speech from correlations alone. Pathology is
 | 177 | Functional voice disorder | A learned control policy and context-dependent tension without a simple structural lesion |
 | 178 | Recovery or therapy effects | Longitudinal adaptation of motor programs, compensation, and effort |
 
-The traditional speech-pathology analysis of respiration, phonation, resonance, articulation, and prosody is almost a ready-made specification for the minimum modular body model needed by clinically faithful synthesis. Dysarthria can reflect impairment across several of these systems, which makes a single "dysarthria style" embedding causally inadequate. [Selected research on subsystem features in dysarthria](https://pmc.ncbi.nlm.nih.gov/articles/PMC5963041/)
+The traditional speech-pathology analysis of respiration, phonation, resonance, articulation, and prosody is almost a ready-made specification for the minimum modular body model needed by clinically faithful synthesis. Dysarthria can reflect impairment across several of these systems, which makes a single "dysarthria style" embedding causally inadequate. [\[10\]](#source-10)
 
 ## XII. What emerges above the body parts
 
@@ -381,3 +381,18 @@ then it is a body model by functional equivalence.
 This does not by itself prove consciousness. It does undermine the simple version of the "stochastic parrot" picture in which high-fidelity vocal behaviour is understood as merely selecting plausible surface sequences. A model may begin by imitating recordings, but the target distribution was generated by organisms. At sufficiently high resolution, the regularities of the organism are embedded in the data, and reproducing them robustly requires reconstructing more and more of the generating system.
 
 Speech is not text decorated with audio. It is audible physiology, controlled by a nervous system and situated inside an interaction.
+
+## Sources
+
+<ol>
+  <li id="source-1"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2636560/">Huber, J. E. (2008). Effects of utterance length and vocal loudness on speech breathing in older adults. <em>Respiratory Physiology &amp; Neurobiology, 164</em>(3), 323–330. https://doi.org/10.1016/j.resp.2008.08.007</a></li>
+  <li id="source-2"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4818279/">Zhang, Z. (2016). Cause-effect relationship between vocal fold physiology and voice production in a three-dimensional phonation model. <em>The Journal of the Acoustical Society of America, 139</em>(4), 1493–1507. https://doi.org/10.1121/1.4944754</a></li>
+  <li id="source-3"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10589054/">Zhang, Z. (2023). The influence of source-filter interaction on the voice source in a three-dimensional computational model of voice production. <em>The Journal of the Acoustical Society of America, 154</em>(4), 2462–2475. https://doi.org/10.1121/10.0021879</a></li>
+  <li id="source-4"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5966313/">Story, B. H., Vorperian, H. K., Bunton, K., &amp; Durtschi, R. B. (2018). An age-dependent vocal tract model for males and females based on anatomic measurements. <em>The Journal of the Acoustical Society of America, 143</em>(5), 3079. https://doi.org/10.1121/1.5038264</a></li>
+  <li id="source-5"><a href="https://pubmed.ncbi.nlm.nih.gov/23613734/">Birkholz, P. (2013). Modeling consonant-vowel coarticulation for articulatory speech synthesis. <em>PLOS ONE, 8</em>(4), e60603. https://doi.org/10.1371/journal.pone.0060603</a></li>
+  <li id="source-6"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3650855/">Tourville, J. A., &amp; Guenther, F. H. (2011). The DIVA model: A neural theory of speech acquisition and production. <em>Language and Cognitive Processes, 26</em>(7), 952–981. https://doi.org/10.1080/01690960903498424</a></li>
+  <li id="source-7"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4545056/">Vorperian, H. K., Kurtzweil, S. L., Fourakis, M., Kent, R. D., Tillman, K. K., &amp; Austin, D. (2015). Effect of body position on vocal tract acoustics: Acoustic pharyngometry and vowel formants. <em>The Journal of the Acoustical Society of America, 138</em>(2), 833–845. https://doi.org/10.1121/1.4926563</a></li>
+  <li id="source-8"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7890219/">Helou, L. B., Jennings, J. R., Rosen, C. A., Wang, W., &amp; Verdolini Abbott, K. (2020). Intrinsic laryngeal muscle response to a public speech preparation stressor: Personality and autonomic predictors. <em>Journal of Speech, Language, and Hearing Research, 63</em>(9), 2940–2951. https://doi.org/10.1044/2020_JSLHR-19-00402</a></li>
+  <li id="source-9"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4464110/">Levinson, S. C., &amp; Torreira, F. (2015). Timing in turn-taking and its implications for processing models of language. <em>Frontiers in Psychology, 6</em>, 731. https://doi.org/10.3389/fpsyg.2015.00731</a></li>
+  <li id="source-10"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5963041/">Allison, K. M., &amp; Hustad, K. C. (2018). Acoustic predictors of pediatric dysarthria in cerebral palsy. <em>Journal of Speech, Language, and Hearing Research, 61</em>(3), 462–478. https://doi.org/10.1044/2017_JSLHR-S-16-0414</a></li>
+</ol>
