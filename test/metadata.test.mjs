@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
 import { readdir, readFile } from 'node:fs/promises';
 import test from 'node:test';
+import astroConfig from '../astro.config.mjs';
 import { getArticleDescription } from '../src/lib/descriptions.mjs';
 
+const siteUrl = new URL(astroConfig.site);
 const siteDescription = 'Explorations in consciousness and cosmology';
 const explicitDescription =
   'How the possibilities you can take seriously shape feeling stuck—and how experience, relationships, and reflection can expand that consideration space.';
@@ -54,7 +56,7 @@ test('an article front matter description wins over its first paragraph', async 
   assert.equal(getMetaContent(html, 'property', 'og:type'), 'article');
   assert.equal(
     getMetaContent(html, 'property', 'og:url'),
-    'https://innerlattice.com/consideration-space/'
+    new URL('/consideration-space/', siteUrl).href
   );
 });
 
