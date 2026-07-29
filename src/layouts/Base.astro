@@ -55,20 +55,134 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
         }
       };
 
+      const getDiagramDimensions = (svg: SVGSVGElement) => {
+        const viewBox = svg.viewBox.baseVal;
+        const bounds = svg.getBoundingClientRect();
+        const width = viewBox.width || svg.width.baseVal.value || bounds.width;
+        const height = viewBox.height || svg.height.baseVal.value || bounds.height;
+
+        if (!width || !height) {
+          throw new Error('The diagram has no exportable dimensions.');
+        }
+
+        return { width, height };
+      };
+
+      const loadImage = (source: string) =>
+        new Promise<HTMLImageElement>((resolve, reject) => {
+          const image = new Image();
+          image.onload = () => resolve(image);
+          image.onerror = () => reject(new Error('The diagram could not be prepared for export.'));
+          image.src = source;
+        });
+
+      const renderDiagramPng = async (svg: SVGSVGElement, backgroundColor: string) => {
+        const { width, height } = getDiagramDimensions(svg);
+        const scale = Math.min(2, 8192 / width, 8192 / height);
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.ceil(width * scale);
+        canvas.height = Math.ceil(height * scale);
+
+        const context = canvas.getContext('2d');
+        if (!context) throw new Error('PNG export is not supported by this browser.');
+
+        context.scale(scale, scale);
+        context.fillStyle = backgroundColor;
+        context.fillRect(0, 0, width, height);
+
+        const exportedSvg = svg.cloneNode(true) as SVGSVGElement;
+        exportedSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        exportedSvg.setAttribute('width', String(width));
+        exportedSvg.setAttribute('height', String(height));
+        exportedSvg.style.maxWidth = 'none';
+
+        const svgBlob = new Blob([new XMLSerializer().serializeToString(exportedSvg)], {
+          type: 'image/svg+xml;charset=utf-8',
+        });
+        const svgUrl = URL.createObjectURL(svgBlob);
+
+        try {
+          const image = await loadImage(svgUrl);
+          context.drawImage(image, 0, 0, width, height);
+        } finally {
+          URL.revokeObjectURL(svgUrl);
+        }
+
+        return new Promise<Blob>((resolve, reject) => {
+          canvas.toBlob((blob) => {
+            if (blob) resolve(blob);
+            else reject(new Error('The diagram could not be encoded as a PNG.'));
+          }, 'image/png');
+        });
+      };
+
+      const addDiagramDownloadButtons = () => {
+        const pageName =
+          window.location.pathname.split('/').filter(Boolean).at(-1) ?? 'inner-lattice';
+
+        document.querySelectorAll<HTMLElement>('.mermaid-container').forEach((container, index) => {
+          if (container.querySelector('.mermaid-download')) return;
+
+          const svg = container.querySelector<SVGSVGElement>('.mermaid svg');
+          if (!svg) return;
+
+          const button = document.createElement('button');
+          const diagramNumber = index + 1;
+          button.type = 'button';
+          button.className = 'mermaid-download';
+          button.disabled = true;
+          button.setAttribute('aria-label', `Download diagram ${diagramNumber} as PNG`);
+          button.title = 'Preparing PNG';
+          button.innerHTML = `
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3" />
+            </svg>
+          `;
+
+          const backgroundColor = getComputedStyle(container).backgroundColor;
+          renderDiagramPng(svg, backgroundColor)
+            .then((png) => {
+              button.addEventListener('click', () => {
+                const pngUrl = URL.createObjectURL(png);
+                const link = document.createElement('a');
+                link.href = pngUrl;
+                link.download = `${pageName}-diagram-${diagramNumber}.png`;
+                document.body.append(link);
+                link.click();
+                link.remove();
+                window.setTimeout(() => URL.revokeObjectURL(pngUrl), 1000);
+              });
+
+              button.disabled = false;
+              button.title = 'Download as PNG';
+            })
+            .catch((error) => {
+              button.title = 'PNG download unavailable';
+              console.error('Could not download Mermaid diagram.', error);
+            });
+
+          container.append(button);
+        });
+      };
+
       const renderMermaidDiagrams = async () => {
         for (const pre of document.querySelectorAll('pre[data-language="mermaid"]')) {
           const text = pre.textContent?.trim() ?? '';
           if (!text) continue;
 
+          const container = document.createElement('div');
+          container.className = 'mermaid-container';
           const wrapper = document.createElement('div');
           wrapper.className = 'mermaid';
           wrapper.textContent = text;
-          pre.replaceWith(wrapper);
+          container.append(wrapper);
+          pre.replaceWith(container);
         }
 
         mermaid.initialize({
           startOnLoad: false,
           securityLevel: 'loose',
+          htmlLabels: false,
           theme: 'base',
           themeVariables: {
             background: '#edf2f4',
@@ -97,6 +211,7 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
         });
 
         await mermaid.run();
+        addDiagramDownloadButtons();
       };
 
       prepareResponsiveTables();
