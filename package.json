@@ -5,12 +5,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "test": "npm run build && node --test test/metadata.test.mjs",
     "preview": "astro preview"
   },
   "dependencies": {
     "@fontsource/jetbrains-mono": "^5.3.0",
     "astro": "^5.1.0",
     "katex": "^0.17.0",
+    "mdast-util-from-markdown": "^2.0.3",
     "mermaid": "^11.15.0",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0"
