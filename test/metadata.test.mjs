@@ -1,0 +1,83 @@
+import assert from 'node:assert/strict';
+import { readdir, readFile } from 'node:fs/promises';
+import test from 'node:test';
+import { getArticleDescription } from '../src/lib/descriptions.mjs';
+
+const siteDescription = 'Explorations in consciousness and cosmology';
+const explicitDescription =
+  'How the possibilities you can take seriously shape feeling stuck—and how experience, relationships, and reflection can expand that consideration space.';
+const fallbackDescription =
+  'A comprehensive nutrient ontology: a structured map of macronutrients, micronutrients, conditionally essential compounds, plant bioactives, microbiota-associated modulators, and water.';
+
+async function readPage(path) {
+  return readFile(new URL(`../dist/${path}/index.html`, import.meta.url), 'utf8');
+}
+
+function getMetaContent(html, attribute, value) {
+  const tag = html
+    .match(/<meta\b[^>]*>/g)
+    ?.find((candidate) => candidate.includes(`${attribute}="${value}"`));
+  assert.ok(tag, `Expected a meta tag with ${attribute}="${value}"`);
+
+  const content = tag.match(/\bcontent="([^"]*)"/)?.[1];
+  assert.notEqual(content, undefined, `Expected ${attribute}="${value}" to have content`);
+  return content;
+}
+
+test('description extraction skips non-text blocks and removes inline Markdown', () => {
+  const body = `## Heading
+
+![Decorative image](/image.png)
+
+The **first** meaningful [paragraph](https://example.com)
+continues here.`;
+
+  assert.equal(
+    getArticleDescription(undefined, body),
+    'The first meaningful paragraph continues here.'
+  );
+});
+
+test('non-article pages retain the site description and website Open Graph type', async () => {
+  const html = await readPage('');
+
+  assert.equal(getMetaContent(html, 'name', 'description'), siteDescription);
+  assert.equal(getMetaContent(html, 'property', 'og:description'), siteDescription);
+  assert.equal(getMetaContent(html, 'property', 'og:type'), 'website');
+});
+
+test('an article front matter description wins over its first paragraph', async () => {
+  const html = await readPage('consideration-space');
+
+  assert.equal(getMetaContent(html, 'name', 'description'), explicitDescription);
+  assert.equal(getMetaContent(html, 'property', 'og:description'), explicitDescription);
+  assert.equal(getMetaContent(html, 'property', 'og:type'), 'article');
+  assert.equal(
+    getMetaContent(html, 'property', 'og:url'),
+    'https://innerlattice.com/consideration-space/'
+  );
+});
+
+test('an article without a description uses its first meaningful body paragraph', async () => {
+  const html = await readPage('ontology-of-nutrients');
+
+  assert.equal(getMetaContent(html, 'name', 'description'), fallbackDescription);
+  assert.equal(getMetaContent(html, 'property', 'og:description'), fallbackDescription);
+  assert.notEqual(getMetaContent(html, 'property', 'og:description'), siteDescription);
+  assert.equal(getMetaContent(html, 'property', 'og:type'), 'article');
+});
+
+test('every published article has matching, article-specific description metadata', async () => {
+  const posts = await readdir(new URL('../src/content/posts/', import.meta.url));
+
+  for (const post of posts.filter((file) => file.endsWith('.md'))) {
+    const slug = post.replace(/\.md$/, '');
+    const html = await readPage(slug);
+    const description = getMetaContent(html, 'property', 'og:description');
+
+    assert.ok(description, `${slug} should have an Open Graph description`);
+    assert.notEqual(description, siteDescription, `${slug} should not use the site description`);
+    assert.equal(getMetaContent(html, 'name', 'description'), description);
+    assert.equal(getMetaContent(html, 'property', 'og:type'), 'article');
+  }
+});

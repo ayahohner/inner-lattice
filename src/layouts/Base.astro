@@ -4,11 +4,17 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  type?: 'website' | 'article';
 }
 
-const { title, description = 'Explorations in consciousness and cosmology' } = Astro.props;
+const {
+  title,
+  description = 'Explorations in consciousness and cosmology',
+  type = 'website',
+} = Astro.props;
 const siteTitle = 'inner lattice';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
+const pageUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 ---
 
 <!DOCTYPE html>
@@ -17,6 +23,11 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:site_name" content={siteTitle} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{fullTitle}</title>
   </head>

@@ -13,6 +13,7 @@ Personal site for publishing markdown content about consciousness and cosmology.
 ```yaml
 ---
 title: "Your Post Title"       # required
+description: "Embed summary"   # optional; defaults to the first body paragraph
 date: 2026-01-16               # optional, defaults to current date
 tags: ["consciousness"]        # optional, defaults to ["note"]
 ---
