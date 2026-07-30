@@ -293,6 +293,8 @@ time {
 .post-content pre {
   background-color: var(--color-code-bg);
   color: var(--color-code-text);
+  font-size: 0.8rem;
+  line-height: 1.43;
   padding: var(--spacing-md);
   border-radius: 6px;
   overflow-x: auto;
@@ -307,7 +309,6 @@ time {
   background: none;
   padding: 0;
   color: inherit;
-  line-height: 1;
 }
 
 .post-content .katex {
