@@ -13,8 +13,10 @@
   --color-border: #e0e4e8;
   --color-surface: #f1f4f6;
   --color-surface-raised: #edf2f4;
-  --color-code-bg: #eeeeee;
-  --color-code-text: #2d2d2d;
+  --color-code-bg: #f9f8f5;
+  --color-code-text: #3f362d;
+  --color-inline-code-bg: #f1ece3;
+  --color-inline-code-text: #6f5844;
   --color-table-border: #efeded;
   --color-table-header-bg: #f7f7f7;
   --color-table-header-text: #5f5a5a;
@@ -282,9 +284,10 @@ time {
 .post-content code {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  background-color: var(--color-surface);
+  color: var(--color-inline-code-text);
+  background-color: var(--color-inline-code-bg);
   padding: 0.15em 0.3em;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 .post-content pre {
@@ -294,13 +297,17 @@ time {
   border-radius: 6px;
   overflow-x: auto;
   margin: var(--spacing-md) 0;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  box-shadow:
+    inset 0 1px 3px rgba(45, 45, 45, 0.05),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.56),
+    0 1px 1px rgba(45, 45, 45, 0.02);
 }
 
 .post-content pre code {
   background: none;
   padding: 0;
   color: inherit;
+  line-height: 1;
 }
 
 .post-content .katex {
