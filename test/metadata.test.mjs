@@ -83,3 +83,24 @@ test('every published article has matching, article-specific description metadat
     assert.equal(getMetaContent(html, 'property', 'og:type'), 'article');
   }
 });
+
+test('home, tag and article pages expose crawlable social images and large cards', async () => {
+  for (const path of ['', 'tags/future', 'exocentric-latent-cartography']) {
+    const html = await readPage(path);
+    assert.equal(getMetaContent(html, 'property', 'og:image:width'), '1200');
+    assert.equal(getMetaContent(html, 'property', 'og:image:height'), '630');
+    assert.equal(getMetaContent(html, 'property', 'og:image:type'), 'image/jpeg');
+    assert.equal(getMetaContent(html, 'name', 'twitter:card'), 'summary_large_image');
+    assert.equal(getMetaContent(html, 'name', 'twitter:description'), getMetaContent(html, 'property', 'og:description'));
+    assert.ok(getMetaContent(html, 'property', 'og:image:alt'));
+    assert.ok(getMetaContent(html, 'name', 'twitter:image:alt'));
+    for (const [attribute, name] of [['property', 'og:image'], ['name', 'twitter:image']]) {
+      const url = new URL(getMetaContent(html, attribute, name));
+      assert.equal(url.origin, siteUrl.origin);
+      assert.equal(url.protocol, 'https:');
+      const bytes = await readFile(new URL(`../dist${url.pathname}`, import.meta.url));
+      assert.equal(bytes.subarray(0, 3).toString('hex'), 'ffd8ff', 'Image must be a real JPEG');
+      assert.ok(bytes.length < 300_000, 'Keep preview downloads lightweight');
+    }
+  }
+});

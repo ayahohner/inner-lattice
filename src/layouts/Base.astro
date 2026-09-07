@@ -15,6 +15,9 @@ const {
 const siteTitle = 'inner lattice';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 const pageUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+const socialImage = new URL('/social/inner-lattice-v1.jpg', pageUrl);
+const socialImageX = new URL('/social/inner-lattice-x-v1.jpg', pageUrl);
+const socialImageAlt = 'A fine woven lattice folding around an open center, in charcoal and muted bronze on an off-white field.';
 ---
 
 <!DOCTYPE html>
@@ -28,6 +31,17 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
     <meta property="og:type" content={type} />
     <meta property="og:url" content={pageUrl} />
     <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageX} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
     <link rel="preload" href="/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
