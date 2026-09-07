@@ -319,11 +319,6 @@ time {
   margin-bottom: var(--spacing-xl);
 }
 
-/* Adjacent body blocks form a group; its final block keeps the 32px gap. */
-.post-content :is(p, ul, ol, dl, pre, .katex-display):has(+ :is(p, ul, ol, dl, pre, .katex-display)) {
-  margin-bottom: var(--spacing-md);
-}
-
 /* The container owns the trailing gap, never its last nested block. */
 .post-content :is(blockquote, li, dd, td, th, .table-cell-content) > :last-child {
   margin-bottom: 0;
@@ -557,6 +552,16 @@ time {
   border: none;
   border-top: 1px solid var(--color-border);
   margin-bottom: var(--spacing-xl);
+}
+
+/* Adjacent body blocks form a group; its final block keeps the 32px gap. */
+.post-content :is(p, ul, ol, dl, pre, .katex-display):has(+ :where(p, ul, ol, dl, pre, .katex-display)) {
+  margin-bottom: var(--spacing-md);
+}
+
+/* An introductory paragraph stays attached to its list. */
+.post-content p:has(+ :is(ul, ol, dl)):not(:last-child) {
+  margin-bottom: 0;
 }
 
 .post-footer {
