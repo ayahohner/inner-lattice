@@ -73,14 +73,19 @@
   --spacing-sm: 8px;
   --spacing-md: 16px;
   --spacing-lg: 24px;
-  --spacing-xl: 40px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 40px;
+  --page-gutter: var(--spacing-lg);
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
   padding: 0;
 }
 
@@ -101,8 +106,10 @@ body {
 
 .container {
   max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 44px 24px 72px;
+  margin-inline: auto;
+  padding-top: calc(var(--spacing-xxl) + var(--spacing-xs));
+  padding-inline: var(--page-gutter);
+  padding-bottom: calc(var(--spacing-xxl) + var(--spacing-xl));
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -110,7 +117,7 @@ body {
 
 /* Header */
 header {
-  margin-bottom: var(--body-line);
+  margin-bottom: var(--spacing-xl);
 }
 
 .site-title {
@@ -119,7 +126,7 @@ header {
   font-weight: 500;
   color: var(--color-text);
   text-decoration: none;
-  letter-spacing: 0;
+  letter-spacing: -0.04rem;
 }
 
 .site-title .ce-c {
@@ -133,11 +140,11 @@ header {
 /* Main */
 main {
   flex: 1;
+  margin-bottom: var(--spacing-xxl);
 }
 
 /* Footer */
 footer {
-  margin-top: var(--spacing-xl);
   padding-top: var(--spacing-lg);
   border-top: 1px solid var(--color-border);
   color: var(--color-text-muted);
@@ -191,7 +198,6 @@ footer {
   align-items: center;
   gap: var(--spacing-md);
   flex-wrap: wrap;
-  margin-top: 0;
   font-size: 14px;
   line-height: 24px;
   color: var(--color-text-muted);
@@ -213,7 +219,7 @@ time {
   display: inline-block;
   font-size: 12px;
   line-height: 24px;
-  padding: 0 6px;
+  padding-inline: var(--spacing-sm);
   background-color: var(--color-tag-bg);
   color: var(--color-tag-text);
   border-radius: 5px 3px 5px 3px;
@@ -239,7 +245,6 @@ time {
 
 .back-link {
   display: inline-block;
-  margin-top: var(--spacing-md);
   color: var(--color-text-muted);
   text-decoration: none;
   font-size: 0.875rem;
@@ -260,7 +265,7 @@ time {
 }
 
 .post-header {
-  margin-bottom: var(--body-line);
+  margin-bottom: var(--spacing-xl);
 }
 
 /* A single grid-rounded rule for every heading, with bottom-only spacing. */
@@ -271,7 +276,7 @@ time {
   font-feature-settings: var(--sans-features);
   font-weight: var(--heading-weight);
   line-height: round(up, 1.25em, var(--grid));
-  margin: 0 0 round(nearest, 0.5em, var(--grid));
+  margin-bottom: round(nearest, 0.5em, var(--grid));
   letter-spacing: -0.015em;
   text-wrap: balance;
   overflow-wrap: break-word;
@@ -311,7 +316,39 @@ time {
 }
 
 .post-content p {
-  margin: 0 0 var(--body-line);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Paragraphs form tighter groups; an introduction stays attached to its list. */
+.post-content p:has(+ p) {
+  margin-bottom: var(--spacing-md);
+}
+
+.post-content p:has(+ :is(ul, ol, dl)) {
+  margin-bottom: 0;
+}
+
+/* The container owns the trailing gap, never its last nested block. */
+.post-content :is(blockquote, li, dd, td, th, .table-cell-content) > :last-child {
+  margin-bottom: 0;
+}
+
+/* Give block-rich list items separation without spacing every short bullet. */
+.post-content li:has(> :is(p, .katex-display, pre, blockquote)):not(:last-child) {
+  margin-bottom: var(--spacing-md);
+}
+
+.post-content dt {
+  font-weight: var(--emphasis-weight);
+}
+
+.post-content dd:not(:last-child) {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Markdown wraps display math in a paragraph; avoid two trailing gaps. */
+.post-content p:has(> .katex-display:only-child) {
+  margin-bottom: 0;
 }
 
 .post-content a {
@@ -322,18 +359,18 @@ time {
 
 .post-content a:hover {
   color: var(--color-link-hover);
+  text-decoration-line: none;
 }
 
-.post-content ul,
-.post-content ol {
-  margin-bottom: var(--body-line);
+.post-content :is(ul, ol, dl) {
+  margin-bottom: var(--spacing-xl);
   padding-left: var(--spacing-lg);
 }
 
 .post-content blockquote {
   border-left: 3px solid var(--color-border);
   padding-left: var(--spacing-md);
-  margin: var(--spacing-md) 0 var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
   color: var(--color-text-muted);
   font-style: italic;
 }
@@ -344,7 +381,8 @@ time {
   font-size: 0.8rem;
   color: var(--color-inline-code-text);
   background-color: var(--color-inline-code-bg);
-  padding: 0.15em 0.3em;
+  padding-block: calc(var(--spacing-xs) / 2);
+  padding-inline: var(--spacing-xs);
   border-radius: 4px;
 }
 
@@ -356,7 +394,7 @@ time {
   padding: var(--spacing-md);
   border-radius: 6px;
   overflow-x: auto;
-  margin: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-xl);
   box-shadow:
     inset 0 1px 3px rgba(45, 45, 45, 0.05),
     inset 0 -1px 1px rgba(255, 255, 255, 0.56),
@@ -374,17 +412,20 @@ time {
 }
 
 .post-content .katex-display {
-  margin: 1.5rem auto;
+  /* Override KaTeX’s own display margin, keeping only trailing space. */
+  margin-top: 0;
+  margin-bottom: var(--spacing-xl);
   text-align: center;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 0.6rem 0.75rem;
+  padding-block: var(--spacing-sm);
+  padding-inline: var(--spacing-md);
   border-radius: 8px;
   background-color: var(--color-surface);
 }
 
 .post-content .katex-display::-webkit-scrollbar {
-  height: 0.4rem;
+  height: var(--spacing-sm);
 }
 
 .post-content .katex-display::-webkit-scrollbar-thumb {
@@ -394,7 +435,7 @@ time {
 
 .post-content .mermaid-container {
   position: relative;
-  margin: 1.75rem auto;
+  margin-bottom: var(--spacing-xl);
   border-radius: 8px;
   background-color: var(--color-surface-raised);
 }
@@ -414,7 +455,7 @@ time {
 }
 
 .post-content .mermaid::-webkit-scrollbar {
-  height: 0.4rem;
+  height: var(--spacing-sm);
 }
 
 .post-content .mermaid::-webkit-scrollbar-thumb {
@@ -424,8 +465,8 @@ time {
 
 .post-content .mermaid-download {
   position: absolute;
-  top: 0.45rem;
-  right: 0.45rem;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
   z-index: 1;
   display: grid;
   width: 1.8rem;
@@ -471,8 +512,8 @@ time {
 .post-content table {
   display: block;
   width: max-content;
-  max-width: min(calc(100vw - 2rem), var(--wide-content-width));
-  margin: var(--spacing-lg) 0;
+  max-width: min(calc(100vw - 2 * var(--page-gutter)), var(--wide-content-width));
+  margin-bottom: var(--spacing-xl);
   overflow-x: auto;
   border-collapse: collapse;
   position: relative;
@@ -483,7 +524,8 @@ time {
 
 .post-content th,
 .post-content td {
-  padding: 0.45rem 0.65rem;
+  padding-block: var(--spacing-xs);
+  padding-inline: var(--spacing-sm);
   border-bottom: 1px solid var(--color-table-border);
   text-align: left;
   vertical-align: top;
@@ -507,7 +549,7 @@ time {
 }
 
 .post-content table::-webkit-scrollbar {
-  height: 0.4rem;
+  height: var(--spacing-sm);
 }
 
 .post-content table::-webkit-scrollbar-thumb {
@@ -518,11 +560,10 @@ time {
 .post-content hr {
   border: none;
   border-top: 1px solid var(--color-border);
-  margin: var(--spacing-xl) 0;
+  margin-bottom: var(--spacing-xl);
 }
 
 .post-footer {
-  margin-top: var(--spacing-xl);
   padding-top: var(--spacing-lg);
   border-top: 1px solid var(--color-border);
 }
@@ -543,8 +584,8 @@ time {
     font-size: 16px;
   }
 
-  .container {
-    padding: 44px 20px 72px;
+  :root {
+    --page-gutter: calc(var(--spacing-md) + var(--spacing-xs));
   }
 
   .post-content table {
@@ -559,7 +600,7 @@ time {
     display: block;
     width: 100%;
     max-width: 100%;
-    margin: var(--spacing-lg) 0;
+    margin-bottom: var(--spacing-xl);
     overflow: visible;
     border-collapse: separate;
     white-space: normal;
@@ -571,7 +612,6 @@ time {
     width: 1px;
     height: 1px;
     padding: 0;
-    margin: -1px;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
@@ -585,7 +625,8 @@ time {
 
   .post-content .mobile-card-table tr {
     display: block;
-    padding: 0.35rem var(--spacing-md);
+    padding-block: var(--spacing-xs);
+    padding-inline: var(--spacing-md);
     background-color: var(--color-table-header-bg);
     border: 1px solid var(--color-table-border);
     border-radius: 8px;
@@ -594,9 +635,14 @@ time {
   .post-content .mobile-card-table td {
     display: grid;
     grid-template-columns: minmax(6.5rem, 38%) minmax(0, 1fr);
-    gap: 0.75rem;
-    padding: 0.65rem 0;
+    gap: calc(var(--spacing-sm) + var(--spacing-xs));
+    padding-block: var(--spacing-sm);
+    padding-inline: 0;
     overflow-wrap: anywhere;
+  }
+
+  .post-content .table-cell-content {
+    min-width: 0;
   }
 
   .post-content .mobile-card-table td::before {

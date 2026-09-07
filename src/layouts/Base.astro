@@ -51,9 +51,12 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 
       const prepareResponsiveTables = () => {
         for (const table of document.querySelectorAll<HTMLTableElement>('.post-content table')) {
-          const headers = Array.from(table.tHead?.rows[0]?.cells ?? [], (cell) =>
-            cell.textContent?.trim() ?? ''
-          );
+          const headers = Array.from(table.tHead?.rows[0]?.cells ?? [], (cell) => {
+            const label = cell.cloneNode(true) as HTMLElement;
+            // KaTeX includes hidden MathML alongside the visible label.
+            label.querySelectorAll('.katex-mathml').forEach((math) => math.remove());
+            return label.textContent?.trim() ?? '';
+          });
 
           // Short tables remain easier to scan in their native tabular layout.
           if (headers.length < 3) continue;
@@ -63,6 +66,13 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
           for (const row of table.tBodies[0]?.rows ?? []) {
             Array.from(row.cells).forEach((cell, index) => {
               cell.dataset.label = headers[index] ?? '';
+              // Keep mixed text, emphasis and math together in one grid cell.
+              if (!cell.querySelector(':scope > .table-cell-content')) {
+                const content = document.createElement('div');
+                content.className = 'table-cell-content';
+                content.append(...cell.childNodes);
+                cell.append(content);
+              }
             });
           }
         }
